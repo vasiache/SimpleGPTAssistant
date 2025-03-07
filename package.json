@@ -1,0 +1,142 @@
+{
+  "name": "simplegpt",
+  "displayName": "SimpleGPT",
+  "description": "VS Code extension for working with OpenAI prompts",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vasiache/simpleGPTextention"
+  },
+  "bugs": {
+    "url": "https://github.com/vasiache/simpleGPTextention/issues"
+  },
+  "homepage": "https://github.com/vasiache/simpleGPTextention**readme",
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:simplegpt.openChat",
+    "onCommand:simplegpt.addPrompt",
+    "onCommand:simplegpt.showPrompts",
+    "onCommand:simplegpt.deletePrompt",
+    "onCommand:simplegpt.setApiKey",
+    "onCommand:simplegpt.setApiUrl",
+    "onCommand:simplegpt.setModel",
+    "onCommand:simplegpt.resetApiKey",
+    "onView:simplegpt.chatView"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "simplegpt.openChat",
+        "title": "simplegpt: Open Chat"
+      },
+      {
+        "command": "simplegpt.clearChatHistory",
+        "title": "SimpleGPT: Clear Chat History"
+      },
+      {
+        "command": "simplegpt.addPrompt",
+        "title": "simplegpt: Add Prompt"
+      },
+      {
+        "command": "simplegpt.showPrompts",
+        "title": "simplegpt: Show Prompts"
+      },
+      {
+        "command": "simplegpt.deletePrompt",
+        "title": "simplegpt: Delete Prompt"
+      },
+      {
+        "command": "simplegpt.setApiKey",
+        "title": "simplegpt: Set API Key"
+      },
+      {
+        "command": "simplegpt.setApiUrl",
+        "title": "simplegpt: Set API URL"
+      },
+      {
+        "command": "simplegpt.setModel",
+        "title": "simplegpt: Set Model"
+      },
+      {
+        "command": "simplegpt.resetApiKey",
+        "title": "simplegpt: Reset API Key"
+      },
+      {
+        "command": "_simplegpt.contextMenu",
+        "title": "simplegpt: Use with Prompt"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "simplegpt-sidebar",
+          "title": "SimpleGPT",
+          "icon": "$(comment-discussion)"
+        }
+      ]
+    },
+    "views": {
+      "simplegpt-sidebar": [
+        {
+          "type": "webview",
+          "id": "simplegpt.chatView",
+          "name": "Chat"
+        }
+      ]
+    },
+    "menus": {
+      "editor/context": [
+        {
+          "command": "_simplegpt.contextMenu",
+          "when": "editorHasSelection",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "SimpleGPT",
+      "properties": {
+        "simplegpt.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "OpenAI API Key"
+        },
+        "simplegpt.apiUrl": {
+          "type": "string",
+          "default": "https://api.openai.com/v1/chat/completions",
+          "description": "OpenAI API URL"
+        },
+        "simplegpt.model": {
+          "type": "string",
+          "default": "gpt-3.5-turbo",
+          "description": "Model to use for completions"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.60.0",
+    "@types/node": "^16.11.7",
+    "@typescript-eslint/eslint-plugin": "^5.30.0",
+    "@typescript-eslint/parser": "^5.30.0",
+    "eslint": "^8.18.0",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "axios": "^0.27.2"
+  }
+}
